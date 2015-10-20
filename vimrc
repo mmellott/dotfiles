@@ -11,7 +11,7 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has('gui_running')
   " font
-  set guifont=Monospace\ 11
+  set guifont=Monospace\ 9
 
   " display menu, toolbar, etc.
   set guioptions=emgtLr
@@ -87,7 +87,7 @@ set nu " show line numbers
 set textwidth=80 " 80 chars per line, affects various options
 set formatoptions=c " auto-wrap comments and insert current comment leader!
 set fo+=q " use gq* commands to format paragraphs
-set autochdir " working dir same as file being edited
+"set autochdir " working dir same as file being edited
 set ruler " always show which line we are on, etc.
 
 " ctrl+hjkl split navigation
