@@ -136,3 +136,23 @@ function! AutoHighlightToggle()
   endif
 endfunction
 
+" split automatically when opening tag
+" http://goo.gl/V8r9iM
+"fun! SPLITAG() range
+"  let oldfile=expand("%:p")
+"  if &modified
+"    split
+"  endif
+"  exe "tag ". expand("<cword>")
+"  let curfile=expand("%:p")
+"  if curfile == oldfile
+"    let pos=getpos(".")
+"    if &modified
+"      " if we have split before:
+"      quit
+"    endif
+"    call setpos('.', pos)
+"  endif
+"endfun
+"nmap <C-]> :call SPLITAG()<CR>z.
+
