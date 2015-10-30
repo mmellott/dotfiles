@@ -59,7 +59,13 @@ fi
 PATH=$PATH:$HOME/tmp_bin
 
 # prompt
-export PS1="\n\[$BYellow\][\u@\h] [branch goes here] \w\n$ \[$Color_Off\]"
+function _git_branch_ps {
+  if (git rev-parse &> /dev/null); then
+    echo "($(git rev-parse --abbrev-ref HEAD 2> /dev/null)) "
+  fi
+}
+
+export PS1="\n\[$BYellow\][\u@\h] \$(_git_branch_ps)\w\n$ \[$Color_Off\]"
 
 # aliases
 alias gvimt='gvim --remote-tab-silent'
@@ -107,19 +113,15 @@ function cd {
   command cd "$@" && ls
 }
 
-function timer {
-  start=`date`
-  "$@"
-  end=`date`
-  echo "Start: $start"
-  echo "End: $end"
-}
-
 function rm {
   trash_dir="/tmp/trash/$RANDOM"
   mkdir -p "$trash_dir"
   mv "$@" "$trash_dir"
 }
+
+# color stderr red
+# http://stackoverflow.com/a/16178979/1842880
+color()(set -o pipefail;"$@" 2>&1>&3|sed $'s,.*,\e[31m&\e[m,'>&2)3>&1
 
 ################################################################################
 # history
