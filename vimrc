@@ -156,3 +156,50 @@ endfunction
 "endfun
 "nmap <C-]> :call SPLITAG()<CR>z.
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" netrw settings
+"
+" combination of code from these two sources:
+"   1. http://ivanbrennan.nyc/blog/2014/01/16/rigging-vims-netrw/
+"   2. http://modal.us/blog/2013/07/27/back-to-vim-with-nerdtree-nope-netrw/
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:netrw_liststyle=3 " tree style
+let g:netrw_banner=0 " no banner
+let g:netrw_altv=1 " open files on right
+let g:netrw_preview=1 " open previews vertically
+
+" toggle Vexplore with C-e
+function! ToggleVExplorer()
+  if exists("t:expl_buf_num")
+      let expl_win_num = bufwinnr(t:expl_buf_num)
+      if expl_win_num != -1
+          let cur_win_nr = winnr()
+          exec expl_win_num . 'wincmd w'
+          close
+          exec cur_win_nr . 'wincmd w'
+          unlet t:expl_buf_num
+      else
+          unlet t:expl_buf_num
+      endif
+  else
+      exec '1wincmd w'
+      Vexplore
+      let t:expl_buf_num = bufnr("%")
+      call VexSize(25)
+  endif
+endfunction
+map <silent> <C-E> :call ToggleVExplorer()<CR>
+
+fun! VexSize(vex_width)
+  execute "vertical resize" . a:vex_width
+  set winfixwidth
+  call NormalizeWidths()
+endf
+
+fun! NormalizeWidths()
+  let eadir_pref = &eadirection
+  set eadirection=hor
+  set equalalways! equalalways!
+  let &eadirection = eadir_pref
+endf
+
