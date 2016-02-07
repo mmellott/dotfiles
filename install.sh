@@ -1,7 +1,7 @@
 #!/bin/bash
-# create symlinks to dotfiles
+# setup dotfile configuration
 
-# git dir this script is stored in
+# get dir this script is stored in
 # http://stackoverflow.com/a/246128
 src="${BASH_SOURCE[0]}"
 while [ -h "$src" ]; do
@@ -11,6 +11,10 @@ while [ -h "$src" ]; do
 done
 dir="$( cd -P "$( dirname "$src" )" && pwd )"
 
+# create symlinks
 ln -vsf "$dir/bashrc" ~/.bashrc
 ln -vsf "$dir/vimrc" ~/.vimrc
+
+# run git config script
+"$dir/git-config.sh"
 
