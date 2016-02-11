@@ -75,11 +75,14 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias cp='cp -v'
 alias mv='mv -v'
 alias grep='grep --color=auto'
+alias cgrep='grep --color=always'
+alias rgrep='rgrep --color=auto'
+alias crgrep='rgrep --color=always'
 alias ls='ls --color=auto'
 alias ll='ls -al'
 alias la='ls -A'
 alias l='ls -C'
-alias gits='git status'
+alias gits='git status -s .'
 
 ################################################################################
 # tar command helpers
@@ -118,6 +121,7 @@ function rm {
   mkdir -p "$trash_dir"
   mv "$@" "$trash_dir"
 }
+alias rmm='command rm'
 
 # color stderr red
 # http://stackoverflow.com/a/16178979/1842880
