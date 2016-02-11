@@ -26,6 +26,8 @@ if has('gui_running')
   " lazy tab navigation
   nnoremap <C-Tab> :tabn<CR>
   nnoremap <C-S-Tab> :tabp<CR>
+  nnoremap <C-PageDown> :bn<CR>
+  nnoremap <C-PageUp> :bp<CR>
 else
   color evening
 endif
@@ -168,7 +170,6 @@ let g:netrw_banner=0 " no banner
 let g:netrw_altv=1 " open files on right
 let g:netrw_preview=1 " open previews vertically
 
-" toggle Vexplore with C-e
 function! ToggleVExplorer()
   if exists("t:expl_buf_num")
       let expl_win_num = bufwinnr(t:expl_buf_num)
@@ -188,7 +189,7 @@ function! ToggleVExplorer()
       call VexSize(25)
   endif
 endfunction
-map <silent> <C-E> :call ToggleVExplorer()<CR>
+map <silent> <Leader>~ :call ToggleVExplorer()<CR>
 
 fun! VexSize(vex_width)
   execute "vertical resize" . a:vex_width
