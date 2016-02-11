@@ -102,8 +102,9 @@ nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 
-" maximum number of tabs to open when using -p option
-set tabpagemax=100
+" tab page settings
+set tabpagemax=100 " maximum number of tabs to open when using -p option
+set guitablabel=%t " only show filename in tab label
 
 " auto save/load views
 " views save lots of cool information about file like cursor pos and folds
