@@ -104,7 +104,7 @@ set splitright
 
 " tab page settings
 set tabpagemax=100 " maximum number of tabs to open when using -p option
-set guitablabel=%t " only show filename in tab label
+set guitablabel=%t\ %r%m " show filename, if readonly , and if modified
 
 " auto save/load views
 " views save lots of cool information about file like cursor pos and folds

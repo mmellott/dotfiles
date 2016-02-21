@@ -82,7 +82,8 @@ alias ls='ls --color=auto'
 alias ll='ls -al'
 alias la='ls -A'
 alias l='ls -C'
-alias gits='git status -s .'
+alias gits='git status'
+alias dt='git difftool -y .'
 
 ################################################################################
 # tar command helpers
