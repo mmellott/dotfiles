@@ -1,5 +1,9 @@
 set nocompatible " auf wiedersehen, vi
 
+"execute pathogen#infect()
+"syntax on
+"filetype plugin indent on
+
 " auto-reload vimrc on save
 augroup reload_vimrc
   autocmd!
@@ -36,6 +40,10 @@ endif
 " semi-generic settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" set dir for storing swap files
+"set directory=$HOME/.vim//
+set noswapfile
+
 " automatically reload file
 set autoread
 
@@ -54,24 +62,39 @@ set softtabstop=4 " number of spaces tabs count for during editing operations
 set tabstop=4 " size of a hard tabstop
 
 " make tabs and trailing whitespace visible
+hi ColorColumn ctermbg=lightgrey guibg=lightgrey
+set listchars=tab:\|_,trail:?
+function! ShowIndicators()
+  set list!
+
+  if &list
+    set colorcolumn=+1
+  else
+    set colorcolumn=
+  endif
+
+" make tabs and trailing whitespace visible
 " use autocmd because match only applies to current buffer
 "au BufNewFile,BufRead * match Underlined '\t'
 "au BufNewFile,BufRead * 2match ErrorMsg '\s\+$'
 "au Filetype * match Underlined '\t'
 "au Filetype * 2match ErrorMsg '\s\+$'
-set list listchars=tab:\|_,trail:?
+"set list!
 
 " next line is to test visibility settings, leave it be
 		"	test  
 
 " visually indicate which lines are too long
 " http://stackoverflow.com/a/3765575/1842880
-hi ColorColumn ctermbg=lightgrey guibg=lightgrey
-if exists('+colorcolumn')
-  set colorcolumn=+1
-else
-  au BufWinEnter * let w:m2=matchadd('ColorColumn', '\%>80v.\+', -1)
-endif
+"if exists('+colorcolumn')
+"  set colorcolumn=+1
+"else
+"  au BufWinEnter * let w:m2=matchadd('ColorColumn', '\%>80v.\+', -1)
+"endif
+endfunction
+nnoremap <Leader>d :call ShowIndicators()<CR>
+autocmd Filetype c call ShowIndicators()
+autocmd Filetype sh call ShowIndicators()
 
 " remove trailing whitespace
 nnoremap <Leader>r :%s/\s\+$//e<CR>
