@@ -1,14 +1,29 @@
 set nocompatible " auf wiedersehen, vi
 
-"execute pathogen#infect()
-"syntax on
-"filetype plugin indent on
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" pathogen
+"
+" to install pathogen and my plugins:
+"   mkdir -p ~/.vim/autoload
+"   curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+"   git clone https://mmellott/vim-plugins ~/.vim/bundle
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+execute pathogen#infect()
+filetype plugin indent on
 
-" auto-reload vimrc on save
-augroup reload_vimrc
-  autocmd!
-  autocmd BufWritePost $MYVIMRC source $MYVIMRC
-augroup END
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" indentation
+"
+" if using vim-sleuth, these will serve as defaults
+" if not, these are your tab settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set autoindent
+set smarttab
+
+set sw=4 expandtab
+autocmd Filetype ruby setlocal sw=2 expandtab
+autocmd Filetype vim setlocal  sw=2 expandtab
+autocmd Filetype make setlocal ts=4
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " gui dependent options
@@ -37,11 +52,42 @@ else
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" tabs and trailing whitespace pet peeve indulgence
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+hi ColorColumn ctermbg=lightgrey guibg=lightgrey
+set listchars=tab:\|_,trail:?
+
+function! ShowPeeve()
+  set list
+  set colorcolumn=+1
+endfunction
+
+function! HidePeeve()
+  set nolist
+  set colorcolumn=
+endfunction
+
+nnoremap <Leader>dd :call ShowPeeve()<CR>
+nnoremap <Leader>df :call HidePeeve()<CR>
+
+set list
+autocmd Filetype c call ShowPeeve()
+autocmd Filetype sh call ShowPeeve()
+
+" next line is to test visibility settings, leave it be
+		"	test  
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " semi-generic settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" auto-reload vimrc on save
+augroup reload_vimrc
+  autocmd!
+  autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END
+
 " set dir for storing swap files
-"set directory=$HOME/.vim//
 set noswapfile
 
 " automatically reload file
@@ -54,57 +100,10 @@ nnoremap <Leader>p "+p
 " open grep results in hotlinked buffer
 command! -nargs=+ MyGrep execute 'silent grep! <args>' | copen 33
 
-" tab stuff
-set autoindent
-set expandtab " replace tabs with spaces
-set shiftwidth=4 " number of spaces to use for each indent
-set softtabstop=4 " number of spaces tabs count for during editing operations
-set tabstop=4 " size of a hard tabstop
-
-" make tabs and trailing whitespace visible
-hi ColorColumn ctermbg=lightgrey guibg=lightgrey
-set listchars=tab:\|_,trail:?
-function! ShowIndicators()
-  set list!
-
-  if &list
-    set colorcolumn=+1
-  else
-    set colorcolumn=
-  endif
-
-" make tabs and trailing whitespace visible
-" use autocmd because match only applies to current buffer
-"au BufNewFile,BufRead * match Underlined '\t'
-"au BufNewFile,BufRead * 2match ErrorMsg '\s\+$'
-"au Filetype * match Underlined '\t'
-"au Filetype * 2match ErrorMsg '\s\+$'
-"set list!
-
-" next line is to test visibility settings, leave it be
-		"	test  
-
-" visually indicate which lines are too long
-" http://stackoverflow.com/a/3765575/1842880
-"if exists('+colorcolumn')
-"  set colorcolumn=+1
-"else
-"  au BufWinEnter * let w:m2=matchadd('ColorColumn', '\%>80v.\+', -1)
-"endif
-endfunction
-nnoremap <Leader>d :call ShowIndicators()<CR>
-autocmd Filetype c call ShowIndicators()
-autocmd Filetype sh call ShowIndicators()
-
 " remove trailing whitespace
 nnoremap <Leader>r :%s/\s\+$//e<CR>
 
-" remove trailing whitespace
 nnoremap <Leader>s :set spell!<CR>
-
-" tab settings for specific file types
-autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
-autocmd Filetype sh setlocal ts=2 sts=2 sw=2
 
 " i am a fan of the colors
 syntax on " syntax (lexical?) highlighting
@@ -239,3 +238,19 @@ fun! NormalizeWidths()
   let &eadirection = eadir_pref
 endf
 
+" make tabs and trailing whitespace visible
+" use autocmd because match only applies to current buffer
+"au BufNewFile,BufRead * match Underlined '\t'
+"au BufNewFile,BufRead * 2match ErrorMsg '\s\+$'
+"au Filetype * match Underlined '\t'
+"au Filetype * 2match ErrorMsg '\s\+$'
+"set list!
+
+
+" visually indicate which lines are too long
+" http://stackoverflow.com/a/3765575/1842880
+"if exists('+colorcolumn')
+"  set colorcolumn=+1
+"else
+"  au BufWinEnter * let w:m2=matchadd('ColorColumn', '\%>80v.\+', -1)
+"endif
