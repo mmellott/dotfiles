@@ -6,9 +6,12 @@ set nocompatible " auf wiedersehen, vi
 " to install pathogen and my plugins:
 "   mkdir -p ~/.vim/autoload
 "   curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-"   git clone https://mmellott/vim-plugins ~/.vim/bundle
+"   git clone https://github.com/mmellott/vim-plugins ~/.vim/bundle
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-execute pathogen#infect()
+try
+  execute pathogen#infect()
+catch
+endtry
 filetype plugin indent on
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -22,7 +25,7 @@ set smarttab
 
 set sw=4 expandtab
 autocmd Filetype ruby setlocal sw=2 expandtab
-autocmd Filetype vim setlocal  sw=2 expandtab
+autocmd Filetype vim  setlocal sw=2 expandtab
 autocmd Filetype make setlocal ts=4
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
