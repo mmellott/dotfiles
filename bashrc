@@ -81,7 +81,7 @@ alias crgrep='rgrep --color=always'
 alias ls='ls --color=auto'
 alias ll='ls -al'
 alias la='ls -A'
-alias l='ls -C'
+#alias l='ls -C'
 alias gits='git status'
 alias dt='git difftool -y .'
 
@@ -127,6 +127,14 @@ alias rmm='command rm'
 # color stderr red
 # http://stackoverflow.com/a/16178979/1842880
 color()(set -o pipefail;"$@" 2>&1>&3|sed $'s,.*,\e[31m&\e[m,'>&2)3>&1
+
+function l {
+  if [[ -f $1 ]]; then
+    less "$@"
+  else
+    ls "$@"
+  fi
+}
 
 ################################################################################
 # history
