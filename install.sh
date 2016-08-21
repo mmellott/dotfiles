@@ -14,6 +14,7 @@ dir="$( cd -P "$( dirname "$src" )" && pwd )"
 # create symlinks
 ln -vsf "$dir/bashrc" ~/.bashrc
 ln -vsf "$dir/vimrc" ~/.vimrc
+ln -vsf "$dir/screenrc" ~/.screenrc
 
 # run git config script
 "$dir/git-config.sh"

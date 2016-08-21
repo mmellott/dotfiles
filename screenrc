@@ -1,0 +1,20 @@
+# enable X scrolling!
+termcapinfo xterm* ti@:te@
+
+# change escape key
+escape ^|^|
+
+# fix for residual editor text
+altscreen on
+
+# turn off annoying visual bell
+vbell off
+
+# show a cool status line
+hardstatus alwayslastline
+hardstatus string " %H | %-w%{= rw}>>%t%{-}%+w %=%C%a %Y-%M%d"
+
+# bind Ctrl-Page_Down/Ctrl-Page_Up to next/prev respectively
+bindkey ^[[6;5~ next
+bindkey ^[[5;5~ prev
+
