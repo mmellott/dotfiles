@@ -12,7 +12,7 @@ vbell off
 
 # show a cool status line
 hardstatus alwayslastline
-hardstatus string " %H | %-w%{= rw}>>%t%{-}%+w %=%C%a %Y-%M%d"
+hardstatus string " %S | %-w%{= rw}>>%t%{-}%+w %=%C%a %Y-%M%d"
 
 # bind Ctrl-Page_Down/Ctrl-Page_Up to next/prev respectively
 bindkey ^[[6;5~ next
