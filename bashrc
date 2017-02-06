@@ -117,13 +117,6 @@ function cd {
   command cd "$@" && ls
 }
 
-function rm {
-  trash_dir="/tmp/trash/$RANDOM"
-  mkdir -p "$trash_dir"
-  mv "$@" "$trash_dir"
-}
-alias rmm='command rm'
-
 # color stderr red
 # http://stackoverflow.com/a/16178979/1842880
 color()(set -o pipefail;"$@" 2>&1>&3|sed $'s,.*,\e[31m&\e[m,'>&2)3>&1
