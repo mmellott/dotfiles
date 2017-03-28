@@ -128,6 +128,10 @@ set fo+=q " use gq* commands to format paragraphs
 "set autochdir " working dir same as file being edited
 set ruler " always show which line we are on, etc.
 
+" bash like tab completion
+set wildmode=longest,list,full
+set wildmenu
+
 " ctrl+hjkl split navigation
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
