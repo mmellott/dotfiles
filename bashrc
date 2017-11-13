@@ -129,6 +129,20 @@ function l {
   fi
 }
 
+function idfs {
+  local depth="$1"
+  if ! [[ $depth =~ ^[+]?[0-9]+$ ]]; then
+    echo "Usage: idfs DEPTH [EXPRESSION]"
+    return
+  fi
+  shift
+
+  local d
+  for d in $(seq 1 $depth); do
+    find . -mindepth "$d" -maxdepth "$d" "$@"
+  done
+}
+
 ################################################################################
 # history
 ################################################################################
