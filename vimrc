@@ -46,10 +46,8 @@ if has('gui_running')
   nnoremap <C-s> :w<CR>
 
   " lazy tab navigation
-  nnoremap <C-Tab> :tabn<CR>
-  nnoremap <C-S-Tab> :tabp<CR>
-  nnoremap <C-PageDown> :bn<CR>
-  nnoremap <C-PageUp> :bp<CR>
+  nnoremap <C-Tab> :cn<CR>
+  nnoremap <C-S-Tab> :cp<CR>
 else
   color evening
 endif
