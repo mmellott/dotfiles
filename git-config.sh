@@ -13,3 +13,6 @@ git config --global alias.ls 'log --pretty=format:"%C(yellow)%h %Creset%s %Cblue
 git config --global diff.tool gvimdiff
 git config --global alias.dt 'difftool -y'
 
+git config --global merge.tool gvimdiff
+git config --global merge.conflictstyle diff3
+git config --global mergetool.prompt false
