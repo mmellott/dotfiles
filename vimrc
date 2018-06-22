@@ -71,9 +71,9 @@ endfunction
 nnoremap <Leader>dd :call ShowPeeve()<CR>
 nnoremap <Leader>df :call HidePeeve()<CR>
 
-set list
-autocmd Filetype c call ShowPeeve()
-autocmd Filetype sh call ShowPeeve()
+"set list
+"autocmd Filetype c call ShowPeeve()
+"autocmd Filetype sh call ShowPeeve()
 
 " next line is to test visibility settings, leave it be
 		"	test  
