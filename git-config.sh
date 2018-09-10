@@ -15,4 +15,3 @@ git config --global alias.dt 'difftool -y'
 
 git config --global merge.tool gvimdiff
 git config --global merge.conflictstyle diff3
-git config --global mergetool.prompt false
