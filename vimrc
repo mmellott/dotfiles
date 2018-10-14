@@ -3,14 +3,12 @@ set nocompatible " auf wiedersehen, vi
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " pathogen
 "
-" to install pathogen and my plugins:
-"   mkdir -p ~/.vim/autoload
-"   curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-"   git clone https://github.com/mmellott/vim-plugins ~/.vim/bundle
+" see vim-plugins.sh
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 try
   execute pathogen#infect()
 catch
+  " pathogen probably not installed
 endtry
 filetype plugin indent on
 
