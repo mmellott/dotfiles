@@ -60,12 +60,15 @@ PATH=$PATH:$HOME/tmp_bin
 
 # prompt
 function _git_branch_ps {
-  if (git rev-parse &> /dev/null); then
-    echo "($(git rev-parse --abbrev-ref HEAD 2> /dev/null)) "
+  if (type __git_ps1 &>/dev/null); then
+    echo "$(__git_ps1)"
+  elif (git rev-parse &>/dev/null); then
+    # backup, not as good as __git_ps1 function
+    echo " {$(git rev-parse --abbrev-ref HEAD 2>/dev/null)}"
   fi
 }
 
-export PS1="\n\[$BYellow\][\u@\h] \$(_git_branch_ps)\w\n$ \[$Color_Off\]"
+export PS1="\n\[$BYellow\][\u@\h]\$(_git_branch_ps) \w\n$ \[$Color_Off\]"
 
 # aliases
 alias gvimt='gvim --remote-tab-silent'
