@@ -16,7 +16,7 @@ filetype plugin indent on
 " indentation
 "
 " if using vim-sleuth, these will serve as defaults
-" if not, these are your tab settings
+" else, these are your tab settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set autoindent
 set smarttab
@@ -24,7 +24,6 @@ set smarttab
 set sw=4 expandtab
 autocmd Filetype ruby setlocal sw=2 expandtab
 autocmd Filetype vim  setlocal sw=2 expandtab
-autocmd Filetype make setlocal ts=4
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " gui dependent options
