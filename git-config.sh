@@ -1,9 +1,10 @@
 #!/bin/bash
 # configure git
 
-echo "Don't forget to manually set user.name and user.email!"
-
 set -x
+
+git config --global user.name 'Matthew Mellott'
+git config --global user.email mmellott@users.noreply.github.com
 
 git config --global alias.co checkout
 git config --global alias.br branch
